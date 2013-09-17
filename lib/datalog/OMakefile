@@ -1,0 +1,29 @@
+FILES[] = ast lexer parser parse pretty alpha simplify stratify optimize
+section
+	OCAMLFLAGS += -for-pack Ducelib
+	PACKAGE = $(OCamlPackage ../datalog, $(FILES))
+	export PACKAGE
+OCAMLFLAGS += -for-pack Ducelib.Datalog -I ..
+
+.DEFAULT: $(PACKAGE)
+
+pretty.ml:  ../util.ml
+pretty.cmi: ../util.cmi
+pretty.cmo: ../util.cmo
+pretty.cmx: ../util.cmx
+pretty.o:   ../util.o
+
+simplify.ml:  ../util.ml
+simplify.cmi: ../util.cmi
+simplify.cmo: ../util.cmo
+simplify.cmx: ../util.cmx
+simplify.o:   ../util.o
+
+alpha.ml:  ../util.ml
+alpha.cmi: ../util.cmi
+alpha.cmo: ../util.cmo
+alpha.cmx: ../util.cmx
+alpha.o:   ../util.o
+
+clean::
+	rm -f $(PACKAGE) *.omc *.annot *.spot *.spit *.o *.opt *.cm* lexer.ml parser.ml parser.mli

@@ -1,0 +1,15 @@
+BYTE_ENABLED = true
+NATIVE_ENABLED = true
+USE_OCAMLFIND = true
+OCAML_BYTE_LINK_FLAGS =
+OCAMLPACKS[] = batteries ocamlgraph
+
+FILES[] = main
+OCAML_LIBS += ../lib/ducelib
+OCAMLFLAGS += -I ../lib
+PROGRAM = $(OCamlProgram duce, $(FILES))
+
+.DEFAULT: $(PROGRAM)
+
+clean::
+	rm -f $(PROGRAM) *.omc *.annot *.spot *.spit *.o *.opt *.cm*

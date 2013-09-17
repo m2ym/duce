@@ -1,0 +1,17 @@
+FILES[] = eval
+section
+	OCAMLFLAGS += -for-pack Ducelib
+	PACKAGE = $(OCamlPackage ../topdown, $(FILES))
+	export PACKAGE
+OCAMLFLAGS += -for-pack Ducelib.Topdown -I ..
+
+.DEFAULT: $(PACKAGE)
+
+eval.ml:  ../util.ml  ../rdb.ml
+eval.cmi: ../util.cmi ../rdb.cmi ../datalog.cmi
+eval.cmo: ../util.cmo ../rdb.cmo ../datalog.cmo
+eval.cmx: ../util.cmx ../rdb.cmx ../datalog.cmx
+eval.o:   ../util.o   ../rdb.o   ../datalog.o
+
+clean::
+	rm -f $(PACKAGE) *.omc *.annot *.spot *.spit *.o *.opt *.cm*

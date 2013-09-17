@@ -1,0 +1,5 @@
+name = "ducelib"
+version = "0.0.1"
+description = ""
+archive(byte) = "ducelib.cma"
+archive(native) = "ducelib.cmxa"

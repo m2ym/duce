@@ -1,0 +1,23 @@
+BYTE_ENABLED = true
+NATIVE_ENABLED = true
+USE_OCAMLFIND = true
+OCAML_BYTE_LINK_FLAGS =
+OCAMLPACKS[] = batteries ocamlgraph
+
+.SUBDIRS: datalog topdown
+
+FILES[] = util datalog rdb topdown database
+PACKAGE = $(OCamlPackage ducelib, $(FILES))
+LIBRARY = $(OCamlLibrary ducelib, ducelib)
+OCAMLFLAGS += -for-pack Ducelib
+
+.DEFAULT: $(LIBRARY)
+
+install: $(LIBRARY) uninstall
+	$(OCAMLFIND) install ducelib $(LIBRARY) $(PACKAGE) META
+
+uninstall:
+	$(OCAMLFIND) remove ducelib
+
+clean::
+	rm -f $(LIBRARY) $(PACKAGE) *.omc *.annot *.spot *.spit *.o *.opt *.cm*
