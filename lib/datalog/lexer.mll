@@ -13,7 +13,7 @@ rule token = parse
   | (['_' 'a'-'z' 'A'-'Z' '0'-'9']+) as symbol
       { SYMBOL symbol }
   | '\'' ([^ '\'']+? as symbol) '\''
-      { SYMBOL symbol }
+      { QUOTED_CONST symbol }
 
   | ":-"    { LARROW }
   | '('     { LPAREN }

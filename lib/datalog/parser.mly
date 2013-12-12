@@ -3,7 +3,7 @@
   open Ast
 %}
 
-%token <string> SYMBOL
+%token <string> SYMBOL QUOTED_CONST
 %token LARROW LPAREN RPAREN EXCLAM COMMA DOT
 %token EOF
 
@@ -50,6 +50,7 @@ term:
                                   if Char.is_uppercase s.[0] || s.[0] = '_'
                                   then Var s
                                   else Const s }
+  | QUOTED_CONST                { Const $1 }
 
 terms:
   |                             { [] }
